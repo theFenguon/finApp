@@ -1,17 +1,14 @@
 package testBench;
-import Utility.util;
-import environment.Env;
-import finCalcToolbox.*;
+
 import finModels.FinModel;
 
 public class Main {
-	public static void main (String[] args) {	
-		double foo = FinCalcs.FV_Simple(100, 0.1, 1);
-		util.print(foo);
+	public static void main (String[] args) {		
 		
-		double bar = FinCalcs.FV_Compound(1000, 0.01, 2);
-		util.print(bar);
-		
-		//five_yr_DCF = FinModel.DCF(n, r);Env.term_growth_rate
+		double initPV 			= 618;		// [$MM] Initial Present Value (from Financials)
+		double FCFGrowthRate 	= 0.08;		// [%] Assumed constant growth rate (from Financials)
+		double nPeriods 		= 10;		// Number of periods to evaluate (user defined)
+				
+		FinModel.DCF(initPV, FCFGrowthRate, nPeriods);
 	}
 }
