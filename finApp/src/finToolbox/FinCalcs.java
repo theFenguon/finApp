@@ -1,7 +1,7 @@
-package finCalcToolbox;
+package finToolbox;
 
-import Utility.debug;
-import Utility.util;
+import utility.Debug;
+import utility.Util;
 
 public class FinCalcs {
 	
@@ -17,7 +17,7 @@ public class FinCalcs {
 		double FV = PV*(1+rate*period);
 		
 		// Debug console output
-		if (debug.FinCalcs_FV_Simple) {util.print("FV_Simple~ FV: " + FV);}
+		if (Debug.FinCalcs_FV_Simple) {Util.print("FV_Simple~ FV: " + FV);}
 		
 		return FV;
 	} // method FV_Simple
@@ -38,7 +38,7 @@ public class FinCalcs {
 		double FV = PV*Math.pow((1+rate),period);
 		
 		// Debug console output
-		if (debug.FinCalcs_FV_Compound) {util.print("FV_Compound~ FV: " + FV);}
+		if (Debug.FinCalcs_FV_Compound) {Util.print("FV_Compound~ FV: " + FV);}
 		
 		return FV;
 	} // method FV_Compound
@@ -59,7 +59,7 @@ public class FinCalcs {
 		double PV = FV/Math.pow((1+rate), period);
 		
 		// Debug console output
-		if (debug.FinCalcs_PV_Discounted) {util.print("PV_Discounted~ PV: " + PV);}
+		if (Debug.FinCalcs_PV_Discounted) {Util.print("PV_Discounted~ PV: " + PV);}
 		
 		return PV;
 	} // method PV_Discounted
@@ -80,7 +80,7 @@ public class FinCalcs {
 		double T0 = D0*(1+g)/(k-g);
 		
 		// Debug console output
-		if (debug.FinCalcs_GGM) {util.print("GGM~ T0: " + T0);}
+		if (Debug.FinCalcs_GGM) {Util.print("GGM~ T0: " + T0);}
 
 		return T0;
 	}
@@ -108,7 +108,7 @@ public class FinCalcs {
 		
 		double val = PE*PBV;
 					
-		if (debug.FinCalcs_Graham_Number) {util.print("Graham Number~ Graham Number: " + val);}
+		if (Debug.FinCalcs_Graham_Number) {Util.print("Graham Number~ Graham Number: " + val);}
 		
 		return val;
 		

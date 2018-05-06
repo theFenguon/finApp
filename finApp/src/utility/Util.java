@@ -1,6 +1,6 @@
-package Utility;
+package utility;
 
-public class util {
+public class Util {
 
 	//Print
 	public static void print(String arg) {

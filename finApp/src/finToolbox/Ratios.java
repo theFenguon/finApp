@@ -1,4 +1,4 @@
-package finCalcToolbox;
+package finToolbox;
 
 public class Ratios {
 	public static double PE(double price, double earnings) {
