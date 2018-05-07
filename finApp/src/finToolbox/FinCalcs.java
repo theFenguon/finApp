@@ -1,5 +1,8 @@
 package finToolbox;
 
+import entity.C;
+import environment.Environment;
+import user.User;
 import utility.Debug;
 import utility.Util;
 
@@ -113,5 +116,64 @@ public class FinCalcs {
 		return val;
 		
 	} // Graham Number
+	
+	
+	
+	
+	
+	// Weighted Average Cost of Capital (WACC) --------------------------------
+	// Calculates Weighted Average Cost of Capital (WACC) 
+	// INPUTS
+	// 			PV = present value of cash in dollars
+	// 			rate = discount rate in percent
+	// 			period = number of periods
+	// OUTPUTS
+	//			FV = future value of cash in dollars
+	public static double WACC() {		
+		// Market Assumptions -------------------------------------------------
+			// Risk-Free Rate
+			double riskFreeRate 		= Environment.ten_yr_t_note;
+			
+			// Required Market Rate
+			double reqMarketRate 		= User.required_market_rate;
+			
+			// Market Risk Premium
+			double riskPremium			= reqMarketRate - riskFreeRate;
+				
+		// Equity Assumptions -------------------------------------------------
+			// Beta
+			double beta = C.beta;
+			
+			// Cost of Equity
+			double costOfEquity = riskFreeRate + riskPremium*beta;
+			
+			// Market Value of Equity
+			double marketCap			= C.marketCapitalization;
+			
+		// Debt Assumptions ---------------------------------------------------
+			// Pre-Tax Cost of Debt
+			double preTaxCostOfDebt 	= C.longTermBondYield;
+			
+			// Marginal Tax Rate
+			double taxRate				= Environment.marginal_tax_rate;
+			
+			// After Tax Cost of Debt
+			double afterTaxCostOfDebt 	= (1-taxRate)*preTaxCostOfDebt;
+			
+			// Estimated Market Value of Debt
+			double debtMV 				= C.debtOutstanding;
+		
+		// Firm Assumptions ---------------------------------------------------
+			// Firm Value
+			double firmValue 			= marketCap + debtMV;
+			
+			// Debt to Firm Value
+			double debtToFirmValue 		= debtMV/firmValue;
+		
+		// Calculate WACC -----------------------------------------------------
+			double WACC = (1-debtToFirmValue)*costOfEquity + afterTaxCostOfDebt*debtToFirmValue;
+					
+		return WACC;
+	} // method WACC
 	
 } // class FinCalcs

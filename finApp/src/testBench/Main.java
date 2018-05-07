@@ -2,59 +2,66 @@ package testBench;
 
 import finToolbox.FinModel;
 
+// TODO: Run sensitivity analysis to see how closely the percentages can be estimated given the financials
+// e.g. if the financials are rounded to the nearest million, how much does that impact the calculated
+// percentages? Since DDM is very sensitive to slight changes in percentage, this will help put error bars
+// or confidence intervals on the DDM data (and DCF data).
+
 public class Main {
 	public static void main (String[] args) {		
 
 		// DCF ----------------------------------------------------------------
 		// Discounted Cash Flow with Stable Growth
-		double initPV 			= 12424;		// [$MM] Initial Present Value (from Financials)
-		double FCFGrowthRate 	= 2.300/100;	// [%] Assumed constant growth rate (from Financials)
+		double initPV 			= 15541;		// [$MM] Initial Present Value (from Financials)
+		double FCFGrowthRate 	= 2.150/100;	// [%] Assumed constant growth rate (from Financials)
 		int nPeriods 			= 10;			// Number of periods to evaluate (user defined)	
 		FinModel.DCF(initPV, FCFGrowthRate, nPeriods);
 		
 		// Discounted Cash Flow with Variable Growth
 		double[] FCFGrowthRateArr = {
-				2.300/100, 
-				2.300/100, 
-				2.300/100, 
-				2.300/100, 
-				2.300/100, 
-				5.000/100, 
-				5.000/100, 
-				5.000/100, 
-				5.000/100, 
-				5.000/100};
+				2.150/100, 
+				2.150/100, 
+				2.150/100, 
+				2.150/100, 
+				2.150/100, 
+				2.150/100, 
+				2.150/100, 
+				2.150/100, 
+				2.150/100, 
+				2.150/100};
 		FinModel.DCF(initPV, FCFGrowthRateArr, nPeriods);
 		
 		
 		// DDM ----------------------------------------------------------------
 		// Dividend Discount Model with Stable Growth
-		double initDiv			= 2.08;			// [$] Initial dividend
-		double DivGrowthRate	= 2.000/100;	// [%] Assumed constant growth rate (from Financials)
+		double initDiv			= 3.15;			// [$] Initial dividend
+		double DivGrowthRate	= 4.000/100;	// [%] Assumed constant growth rate (from Financials)
 		FinModel.DDM_Stable(initDiv, DivGrowthRate);
 		
 		// Dividend Discount Model with Variable Growth
-		nPeriods 				= 1;			// Number of periods to evaluate (user defined)			
+		nPeriods 				= 10;			// Number of periods to evaluate (user defined)			
 		double[] DivGrowthRateArr = {
-				5.000/100, 
-				5.000/100, 
-				5.000/100, 
-				5.000/100, 
-				5.000/100, 
-				5.000/100, 
-				5.000/100, 
-				5.000/100, 
-				5.000/100, 
-				5.000/100};
+				4.000/100, 
+				4.000/100, 
+				4.000/100, 
+				4.000/100, 
+				4.000/100, 
+				4.000/100, 
+				4.000/100, 
+				4.000/100, 
+				4.000/100, 
+				1.670/100};
 		FinModel.DDM_Multi(initDiv, DivGrowthRateArr, nPeriods);
 		
 		// EPS_PE Stable ------------------------------------------------------
-		FinModel.EPS_PE_Stable(1.5, (10.000/100), 12, 5);
+		double EPS 				= 5.75;
+		double EPSGrowthRate 	= 2.600/100;
+		double PE				= 22.18;
+		FinModel.EPS_PE_Stable(EPS, EPSGrowthRate, PE, nPeriods);
 		
 		// Graham Guidance ----------------------------------------------------
 		// Graham Guidance for stock price
-		double EPS 	= 10.35;
-		double BV 	= 85.73;
+		double BV 	= 27.54;
 		FinModel.Graham(EPS, BV);
 		
 	} // method main

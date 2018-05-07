@@ -1,6 +1,7 @@
 package finToolbox;
 import java.util.Arrays;
 
+import entity.C;
 import environment.Environment;
 import user.User;
 import utility.*;
@@ -25,12 +26,12 @@ public class FinModel {
 		double PV 		= initPV;
 
 		//TODO: expand DCF method to accept object containing these variables
-		double k 		= 0.1055; 						// [%] Discount Rate (WACC) (from Company object)
-		double g_t 		= Environment.ten_yr_t_note; 	// [%] Terminal Growth Rate (from environment object [usually 10-yr T-Note yield])
-		double debt 	= 30500; 						// [$MM] Outstanding Debt (from Company object)
-		double shares	= 5000.05;						// [MM] Shares Outstanding (from Company object)
+		double k 		= C.WACC;					// [%] Discount Rate (WACC) (from Company object)
+		double g_t 		= C.terminalGrowthRate; 	// [%] Terminal Growth Rate (from Company object [usually 10-yr T-Note yield])
+		double debt 	= C.debtOutstanding; 		// [$MM] Outstanding Debt (from Company object)
+		double shares	= C.sharesOutstanding;		// [MM] Shares Outstanding (from Company object)
 		
-		if (Debug.FinModel_DCF) { Util.print("Starting Value: " + initPV + "\n");}
+		if (Debug.FinModel_DCF_Calc) { Util.print("Starting Value: " + initPV + "\n");}
 		
 		for (int i = 1; i <= period; i++) {
 			
@@ -45,7 +46,7 @@ public class FinModel {
 			
 			
 			// Debug console print out
-			if (Debug.FinModel_DCF) {
+			if (Debug.FinModel_DCF_Calc) {
 				Util.print("Period: " + i);
 				Util.print("FV: " + valFV);
 				Util.print("PV: " + valPV + "\n");				
@@ -54,20 +55,20 @@ public class FinModel {
 		} // for
 
 		// Cumulative Present Value
-		if(Debug.FinModel_DCF) {Util.print("Cumulative PV: " + PV_sum + "\n");}
+		if(Debug.FinModel_DCF_Calc) {Util.print("Cumulative PV: " + PV_sum + "\n");}
 		
 		// Calculate terminal value		
 		double valTerm = FinCalcs.GGM(valFV, g_t, k);
-		if(Debug.FinModel_DCF) {Util.print("Terminal Value: " + valTerm + "\n");}
+		if(Debug.FinModel_DCF_Calc) {Util.print("Terminal Value: " + valTerm + "\n");}
 		
 		double termPV = FinCalcs.PV_Discounted((valFV + valTerm), k, period);
-		if(Debug.FinModel_DCF) {Util.print(period + " year Present Value: " + termPV);}
+		if(Debug.FinModel_DCF_Calc) {Util.print(period + " year Present Value: " + termPV);}
 		
 		double DCF_value = PV_sum + termPV - debt - valPV;
-		if(Debug.FinModel_DCF) {Util.print(period + " year DCF Intrinsic Value: " + DCF_value);}
+		if(Debug.FinModel_DCF_Calc) {Util.print(period + " year DCF Intrinsic Value: " + DCF_value);}
 		
 		double DCF_price = DCF_value/shares;
-		if(Debug.FinModel_DCF) {Util.print(period + " year DCF Share Price: " + DCF_price);}
+		if(Debug.FinModel_DCF_Final) {Util.print("DCF Stable~ " + period + " year DCF Share Price: " + DCF_price);}
 		
 	} // method DCF
 	
@@ -86,7 +87,7 @@ public class FinModel {
 		public static void DCF(double initPV, double[] growthRate, double period) {
 			
 			//TODO: add try/catch: period >= length of growthRate array. If not, throw exception and exit method
-			if (period <= growthRate.length) {boolean err = true;}
+			//if (period <= growthRate.length) {boolean err = true;}
 			
 			
 			double valFV 	= 0;
@@ -95,12 +96,12 @@ public class FinModel {
 			double PV 		= initPV;
 
 			//TODO: expand DCF method to accept object containing these variables
-			double k 		= 0.1055; 						// [%] Discount Rate (WACC) (from Company object)
-			double g_t 		= Environment.ten_yr_t_note; 	// [%] Terminal Growth Rate (from environment object [usually 10-yr T-Note yield])
-			double debt 	= 30500; 						// [$MM] Outstanding Debt (from Company object)
-			double shares	= 5000.05;						// [MM] Shares Outstanding (from Company object)
+			double k 		= C.WACC;					// [%] Discount Rate (WACC) (from Company object)
+			double g_t 		= C.terminalGrowthRate;		// [%] Terminal Growth Rate (from environment object [usually 10-yr T-Note yield])
+			double debt 	= C.debtOutstanding;		// [$MM] Outstanding Debt (from Company object)
+			double shares	= C.sharesOutstanding;		// [MM] Shares Outstanding (from Company object)
 			
-			if (Debug.FinModel_DCF) { Util.print("Starting Value: " + initPV + "\n");}
+			if (Debug.FinModel_DCF_Calc) { Util.print("Starting Value: " + initPV + "\n");}
 			
 			for (int i = 1; i <= period; i++) {
 				
@@ -115,7 +116,7 @@ public class FinModel {
 				
 				
 				// Debug console print out
-				if (Debug.FinModel_DCF) {
+				if (Debug.FinModel_DCF_Calc) {
 					Util.print("Period: " + i);
 					Util.print("FV: " + valFV);
 					Util.print("PV: " + valPV + "\n");		
@@ -124,20 +125,20 @@ public class FinModel {
 			} // for
 
 			// Cumulative Present Value
-			if(Debug.FinModel_DCF) {Util.print("Cumulative PV: " + PV_sum + "\n");}
+			if(Debug.FinModel_DCF_Calc) {Util.print("Cumulative PV: " + PV_sum + "\n");}
 			
 			// Calculate terminal value		
 			double valTerm = FinCalcs.GGM(valFV, g_t, k);
-			if(Debug.FinModel_DCF) {Util.print("Terminal Value: " + valTerm + "\n");}
+			if(Debug.FinModel_DCF_Calc) {Util.print("Terminal Value: " + valTerm + "\n");}
 			
 			double termPV = FinCalcs.PV_Discounted((valFV + valTerm), k, period);
-			if(Debug.FinModel_DCF) {Util.print(period + " year Present Value: " + termPV);}
+			if(Debug.FinModel_DCF_Calc) {Util.print(period + " year Present Value: " + termPV);}
 			
 			double DCF_value = PV_sum + termPV - debt - valPV;
-			if(Debug.FinModel_DCF) {Util.print(period + " year DCF Intrinsic Value: " + DCF_value);}
+			if(Debug.FinModel_DCF_Calc) {Util.print(period + " year DCF Intrinsic Value: " + DCF_value);}
 			
 			double DCF_price = DCF_value/shares;
-			if(Debug.FinModel_DCF) {Util.print(period + " year DCF Share Price: " + DCF_price);}
+			if(Debug.FinModel_DCF_Final) {Util.print("DCF Multi~ " + period + " year DCF Share Price: " + DCF_price);}
 			
 		} // method DCF
 	
@@ -159,15 +160,16 @@ public class FinModel {
 		double valFV 	= 0;
 		double PV 		= initDiv;
 
-		//TODO: expand DCF method to accept object containing these variables
-		double k 		= User.discount_rate;	// [%] Discount Rate (from User object)
+		// TODO: expand DCF method to accept object containing these variables
+		// TODO: Revisit this assumption for the discount value k
+		double k 		= User.required_market_rate;	// [%]
 		
-		if (Debug.FinModel_DDM_Stable) { Util.print("DDM_Stable~ Starting Value: " + initDiv);}
+		if (Debug.FinModel_DDM_Stable_Calc) { Util.print("DDM_Stable~ Starting Value: " + initDiv);}
 		
 		valFV = FinCalcs.GGM(PV, growthRate, k);
 								
 		// Debug console print out
-		if (Debug.FinModel_DDM_Stable) {Util.print("DDM_Stable~ FV: " + valFV);}
+		if (Debug.FinModel_DDM_Stable_Final) {Util.print("DDM_Stable~ FV: " + valFV);}
 
 
 	} // method DDM_Stable
@@ -191,7 +193,8 @@ public class FinModel {
 		public static void DDM_Multi(double initDiv, double growthRate[], int nPeriods) {
 			
 			// User-defined discount rate
-			double k 		= User.discount_rate;	// [%]
+			// TODO: Revisit this assumption for the discount value k
+			double k 		= User.required_market_rate;	// [%]
 			
 			// Instantiate Future and Present Value Arrays
 			double[] FV 	= new double[nPeriods];
@@ -201,7 +204,7 @@ public class FinModel {
 			int end 		= (int) nPeriods-1;
 			double g_t 		= growthRate[end]; 	// [%] Terminal Growth Rate
 			
-			if (Debug.FinModel_DDM_Multi) { Util.print("DDM_Multi~ Starting Value: " + initDiv + "\n");}
+			if (Debug.FinModel_DDM_Multi_Calc) { Util.print("DDM_Multi~ Starting Value: " + initDiv + "\n");}
 			
 			// Seed arrays with initial present value at year 0
 			FV[0] = initDiv;
@@ -219,7 +222,7 @@ public class FinModel {
 				
 				
 				// Debug console print out
-				if (Debug.FinModel_DDM_Multi) {
+				if (Debug.FinModel_DDM_Multi_Calc) {
 					Util.print("DDM_Multi~ Period: " + i);
 					Util.print("DDM_Multi~ FV: " + FV[i]);
 					Util.print("DDM_Multi~ PV: " + PV[i] + "\n");
@@ -229,18 +232,18 @@ public class FinModel {
 
 			// Calculate Cumulative Present Value
 			double PV_sum = Arrays.stream(PV).sum();
-			if(Debug.FinModel_DDM_Multi) {Util.print("DDM_Multi~ Cumulative PV: " + PV_sum);}
+			if(Debug.FinModel_DDM_Multi_Calc) {Util.print("DDM_Multi~ Cumulative PV: " + PV_sum);}
 			
 			// Calculate Terminal Value (Future Value)
 			double valTerm = FinCalcs.GGM(FV[end], g_t, k);
-			if(Debug.FinModel_DDM_Multi) {Util.print("DDM_Multi~ Terminal Value: " + valTerm + "\n");}
+			if(Debug.FinModel_DDM_Multi_Calc) {Util.print("DDM_Multi~ Terminal Value: " + valTerm + "\n");}
 			
 			// Calculate Terminal Value Present Value
 			double termPV = FinCalcs.PV_Discounted(valTerm, k, nPeriods);
 			
 			// Calculate DDM Intrinsic Value share price
 			double DDM_value = PV_sum + termPV;
-			if(Debug.FinModel_DDM_Multi) {Util.print("DDM_Multi~ " + nPeriods + " year DDM Intrinsic Value Share Price: " + DDM_value);}
+			if(Debug.FinModel_DDM_Multi_Final) {Util.print("DDM_Multi~ " + nPeriods + "-year DDM Intrinsic Value Share Price: " + DDM_value);}
 							
 		} // method DDM_Multi
 		
@@ -263,7 +266,7 @@ public class FinModel {
 			// Graham number should be below 22.5
 			double val = Math.sqrt(22.5*EPS*BV);
 			
-			if (Debug.FinModel_Graham) {Util.print("Graham Model~ Intrinsic Value: " + val);}
+			if (Debug.FinModel_Graham_Final) {Util.print("Graham Model~ Intrinsic Value Share Price: " + val);}
 		} // method Graham
 		
 		
@@ -289,7 +292,7 @@ public class FinModel {
 			// Discount value back to current intrinsic value using average stock market growth rate
 			val = val/Math.pow((1+Environment.avg_mkt_growth), nPeriods);
 			
-			if (Debug.FinModel_EPS_PE_Stable) {Util.print("EPS Stable~ Intrinsic Value: " + val);}
+			if (Debug.FinModel_EPS_PE_Stable_Final) {Util.print("EPS Stable~ Intrinsic Value Share Price: " + val);}
 		} // method EPS_PE_Stable
 				
 }

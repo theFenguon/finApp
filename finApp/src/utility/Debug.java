@@ -10,10 +10,19 @@ public class Debug {
 	public static boolean FinCalcs_Graham_Number	= false;
 	
 	//FinModel Class
-	public static boolean FinModel_DCF 				= false;
-	public static boolean FinModel_DDM_Stable		= true;
-	public static boolean FinModel_DDM_Multi		= false;
-	public static boolean FinModel_EPS_PE_Stable	= false;
-	public static boolean FinModel_Graham			= false;
+	public static boolean FinModel_DCF_Calc 		= false;
+	public static boolean FinModel_DCF_Final		= true;
+	
+	public static boolean FinModel_DDM_Stable_Calc	= false;
+	public static boolean FinModel_DDM_Stable_Final	= true;
+	
+	public static boolean FinModel_DDM_Multi_Calc	= false;
+	public static boolean FinModel_DDM_Multi_Final	= true;
+	
+	public static boolean FinModel_EPS_PE_Stable_Calc	= false;
+	public static boolean FinModel_EPS_PE_Stable_Final	= true;
+	
+	public static boolean FinModel_Graham_Calc		= false;
+	public static boolean FinModel_Graham_Final		= true;
 
 }
