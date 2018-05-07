@@ -1,6 +1,8 @@
 package testBench;
 
 import finToolbox.FinModel;
+import finToolbox.M;
+import utility.Util;
 
 // TODO: Run sensitivity analysis to see how closely the percentages can be estimated given the financials
 // e.g. if the financials are rounded to the nearest million, how much does that impact the calculated
@@ -50,7 +52,7 @@ public class Main {
 				4.000/100, 
 				4.000/100, 
 				4.000/100, 
-				1.670/100};
+				4.000/100};
 		FinModel.DDM_Multi(initDiv, DivGrowthRateArr, nPeriods);
 		
 		// EPS_PE Stable ------------------------------------------------------
@@ -63,6 +65,10 @@ public class Main {
 		// Graham Guidance for stock price
 		double BV 	= 27.54;
 		FinModel.Graham(EPS, BV);
+		
+		double[] arr = {1, 2, 3, 4, 5};
+		double q = M.moving_average(arr,3);
+		Util.print(q);
 		
 	} // method main
 } // class Main
