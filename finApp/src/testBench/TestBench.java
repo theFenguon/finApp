@@ -5,15 +5,10 @@ import finToolbox.FinModel;
 import finToolbox.M;
 import utility.Util;
 
-// TODO: Run sensitivity analysis to see how closely the percentages can be estimated given the financials
-// e.g. if the financials are rounded to the nearest million, how much does that impact the calculated
-// percentages? Since DDM is very sensitive to slight changes in percentage, this will help put error bars
-// or confidence intervals on the DDM data (and DCF data).
-
-public class Main {
-	public static void main (String[] args) {		
-
-		// DCF ----------------------------------------------------------------
+public class TestBench {
+	
+	public void runTest() {
+	// DCF ----------------------------------------------------------------
 		// Discounted Cash Flow with Stable Growth
 		double initPV 			= 15541;		// [$MM] Initial Present Value (from Financials)
 		double FCFGrowthRate 	= 2.150/100;	// [%] Assumed constant growth rate (from Financials)
@@ -73,6 +68,5 @@ public class Main {
 		
 		double[] arr2 = {1, 2, 3, 4};
 		double foo = FinCalcs.GeometricMean(arr2);
-				
-	} // method main
-} // class Main
+	}
+}

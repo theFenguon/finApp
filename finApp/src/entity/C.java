@@ -24,6 +24,4 @@ public class C {
 	public static double WACC 					= FinCalcs.WACC();	// [%]
 	
 	
-
-
 }
