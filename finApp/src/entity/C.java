@@ -1,11 +1,16 @@
 package entity;
 
+import enums.Industry;
+import enums.Sector;
 import finToolbox.FinCalcs;
 
 // Placeholder for Company Class
 public class C {
 	
 	// TODO: Constructor should take in a ticker symbol and pull all of these (and more) values from a database
+	
+	Sector s 	= Sector.CONSUMER_DISCRETIONARY;
+	Industry i 	= Industry.AUTO_COMPONENTS;
 	
 	public static boolean paysDividends 		= true;
 	
@@ -18,4 +23,7 @@ public class C {
 	
 	public static double WACC 					= FinCalcs.WACC();	// [%]
 	
+	
+
+
 }

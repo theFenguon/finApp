@@ -73,6 +73,6 @@ public class Main {
 		
 		double[] arr2 = {1, 2, 3, 4};
 		double foo = FinCalcs.GeometricMean(arr2);
-		
+				
 	} // method main
 } // class Main
