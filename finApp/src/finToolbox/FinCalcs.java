@@ -124,11 +124,10 @@ public class FinCalcs {
 	// Weighted Average Cost of Capital (WACC) --------------------------------
 	// Calculates Weighted Average Cost of Capital (WACC) 
 	// INPUTS
-	// 			PV = present value of cash in dollars
-	// 			rate = discount rate in percent
-	// 			period = number of periods
+	// 			none
+	//
 	// OUTPUTS
-	//			FV = future value of cash in dollars
+	//			WACC = Weighted Average Cost of Capital
 	public static double WACC() {		
 		// Market Assumptions -------------------------------------------------
 			// Risk-Free Rate
@@ -175,5 +174,66 @@ public class FinCalcs {
 					
 		return WACC;
 	} // method WACC
+	
+	
+	
+	
+	// Compound Average Growth Rate (CAGR) ------------------------------------
+	// 
+	// INPUTS
+	// 			BV = Beginning Value
+	//			EV = Ending Value
+	//			nPeriods = Number of Periods
+	//
+	// OUTPUTS
+	//			CAGR = Compound Average Growth Rate
+	//
+	// REFERENCES
+	//			https://www.investopedia.com/terms/c/cagr.asp
+	//
+	public static double CAGR(double BV, double EV, int nPeriods) {	
+			
+		double exp = (double) 1/nPeriods;
+		double CAGR = Math.pow((EV/BV),exp)-1;
+		
+		if (Debug.FinCalcs_CAGR) {Util.print("CAGR~ Compound Average Growth Rate: " + CAGR);}
+		
+		return CAGR;
+	}
+	
+	
+	
+	
+	
+	// Geometric Mean ---------------------------------------------------------
+	// 
+	// INPUTS
+	// 			arr = Input array
+	//
+	// OUTPUTS
+	//			GeoMean = Geometric Mean
+	//
+	// REFERENCES
+	//			https://en.wikipedia.org/wiki/Geometric_mean
+	//
+	public static double GeometricMean(double[] arr) {	
+		
+		int n = arr.length;
+		double product = 1;
+		
+		for (int i = 0; i <= n-1; i++) {
+			product = product*arr[i];
+		}
+		
+		double GeoMean = Math.pow(product, Math.pow(n, -1));
+		
+		if (Debug.FinCalcs_GeoMean) {Util.print("Geometric Mean~ Geometric Mean: " + GeoMean);}
+		
+		return GeoMean;
+	}
+	
+	
+	
+	
 	
 } // class FinCalcs

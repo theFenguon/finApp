@@ -1,5 +1,6 @@
 package testBench;
 
+import finToolbox.FinCalcs;
 import finToolbox.FinModel;
 import finToolbox.M;
 import utility.Util;
@@ -68,7 +69,10 @@ public class Main {
 		
 		double[] arr = {1, 2, 3, 4, 5};
 		double q = M.moving_average(arr,3);
-		Util.print(q);
+		Util.print("Moving Average: " + q);
+		
+		double[] arr2 = {1, 2, 3, 4};
+		double foo = FinCalcs.GeometricMean(arr2);
 		
 	} // method main
 } // class Main
