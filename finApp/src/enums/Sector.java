@@ -11,5 +11,5 @@ public enum Sector {
 	TECHNOLOGY,
 	TELECOM,
 	MATERIALS,
-	REAL_ESTATE,
+	REAL_ESTATE
 }
