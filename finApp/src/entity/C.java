@@ -12,6 +12,9 @@ public class C {
 	Sector s 	= Sector.CONSUMER_DISCRETIONARY;
 	Industry i 	= Industry.AUTO_COMPONENTS;
 	
+	public C (String name, double cashFlow, int recentQuater){
+	   
+	}
 	public static boolean paysDividends 		= true;
 	
 	public static double debtOutstanding 		= 26675;			// [$MM]
