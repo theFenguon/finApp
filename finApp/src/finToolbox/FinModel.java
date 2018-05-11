@@ -1,7 +1,7 @@
 package finToolbox;
 import java.util.Arrays;
 
-import entity.C;
+import entity.Company;
 import environment.Environment;
 import user.User;
 import utility.*;
@@ -26,10 +26,10 @@ public class FinModel {
 		double PV 		= initPV;
 
 		//TODO: expand DCF method to accept object containing these variables
-		double k 		= C.WACC;					// [%] Discount Rate (WACC) (from Company object)
-		double g_t 		= C.terminalGrowthRate; 	// [%] Terminal Growth Rate (from Company object [usually 10-yr T-Note yield])
-		double debt 	= C.debtOutstanding; 		// [$MM] Outstanding Debt (from Company object)
-		double shares	= C.sharesOutstanding;		// [MM] Shares Outstanding (from Company object)
+		double k 		= Company.WACC;					// [%] Discount Rate (WACC) (from Company object)
+		double g_t 		= Company.terminalGrowthRate; 	// [%] Terminal Growth Rate (from Company object [usually 10-yr T-Note yield])
+		double debt 	= Company.debtOutstanding; 		// [$MM] Outstanding Debt (from Company object)
+		double shares	= Company.sharesOutstanding;		// [MM] Shares Outstanding (from Company object)
 		
 		if (Debug.FinModel_DCF_Calc) { Util.print("Starting Value: " + initPV + "\n");}
 		
@@ -96,10 +96,10 @@ public class FinModel {
 			double PV 		= initPV;
 
 			//TODO: expand DCF method to accept object containing these variables
-			double k 		= C.WACC;					// [%] Discount Rate (WACC) (from Company object)
-			double g_t 		= C.terminalGrowthRate;		// [%] Terminal Growth Rate (from environment object [usually 10-yr T-Note yield])
-			double debt 	= C.debtOutstanding;		// [$MM] Outstanding Debt (from Company object)
-			double shares	= C.sharesOutstanding;		// [MM] Shares Outstanding (from Company object)
+			double k 		= Company.WACC;					// [%] Discount Rate (WACC) (from Company object)
+			double g_t 		= Company.terminalGrowthRate;		// [%] Terminal Growth Rate (from environment object [usually 10-yr T-Note yield])
+			double debt 	= Company.debtOutstanding;		// [$MM] Outstanding Debt (from Company object)
+			double shares	= Company.sharesOutstanding;		// [MM] Shares Outstanding (from Company object)
 			
 			if (Debug.FinModel_DCF_Calc) { Util.print("Starting Value: " + initPV + "\n");}
 			

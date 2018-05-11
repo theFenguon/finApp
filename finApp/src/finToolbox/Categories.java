@@ -1,34 +1,27 @@
 package finToolbox;
 
-import enums.Market_Cap;
-
 public class Categories {
-	public static Market_Cap setMarketCapCategory(double market_cap) {
+	public static String setMarketCapCategory(double market_cap) {
 		
-		Market_Cap market_cap_category;
+		String market_cap_category;
 				
-		if (market_cap < 50000000) {
-			market_cap_category = Market_Cap.NANO_CAP;
+		if (market_cap < 50) {
+			market_cap_category = "NANO_CAP";
 		}
-		else 
-		if (market_cap > 50000000 && market_cap < 300000000) {
-			
+		else if (market_cap > 50 && market_cap < 300) {
+			market_cap_category = "MICRO_CAP";
 		}
-		else
-		if (market_cap > 300000000 && market_cap < 20000000000) {
-			
+		else if (market_cap >= 300 && market_cap < 2000) {
+			market_cap_category = "SMALL_CAP";
 		}
-		else
-		if (market_cap > 20000000000 && market_cap < 50000000) {
-		
+		else if (market_cap > 2000 && market_cap <= 10000) {
+			market_cap_category = "MID_CAP";
 		}
-		else
-		if (market_cap > 50000000 && market_cap < 50000000) {
-		
+		else if (market_cap > 10000 && market_cap < 200000) {
+			market_cap_category = "LARGE_CAP";
 		}
-		else
-		if (market_cap > 50000000 && market_cap < 50000000) {
-			
+		else {
+			market_cap_category = "MEGA_CAP";
 		}
 	
 		

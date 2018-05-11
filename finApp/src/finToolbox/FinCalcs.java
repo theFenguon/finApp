@@ -1,6 +1,6 @@
 package finToolbox;
 
-import entity.C;
+import entity.Company;
 import environment.Environment;
 import user.User;
 import utility.Debug;
@@ -141,17 +141,17 @@ public class FinCalcs {
 				
 		// Equity Assumptions -------------------------------------------------
 			// Beta
-			double beta = C.beta;
+			double beta = Company.beta;
 			
 			// Cost of Equity
 			double costOfEquity = riskFreeRate + riskPremium*beta;
 			
 			// Market Value of Equity
-			double marketCap			= C.marketCapitalization;
+			double marketCap			= Company.marketCapitalization;
 			
 		// Debt Assumptions ---------------------------------------------------
 			// Pre-Tax Cost of Debt
-			double preTaxCostOfDebt 	= C.longTermBondYield;
+			double preTaxCostOfDebt 	= Company.longTermBondYield;
 			
 			// Marginal Tax Rate
 			double taxRate				= Environment.marginal_tax_rate;
@@ -160,7 +160,7 @@ public class FinCalcs {
 			double afterTaxCostOfDebt 	= (1-taxRate)*preTaxCostOfDebt;
 			
 			// Estimated Market Value of Debt
-			double debtMV 				= C.debtOutstanding;
+			double debtMV 				= Company.debtOutstanding;
 		
 		// Firm Assumptions ---------------------------------------------------
 			// Firm Value
