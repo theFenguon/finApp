@@ -33,7 +33,7 @@ public class FinModel {
 		
 		if (Debug.FinModel_DCF_Calc) { Util.print("Starting Value: " + initPV + "\n");}
 		
-		for (int i = 1; i <= period; i++) {
+		for (int i = 1; i <= period; i++) { 
 			
 			// Calculate Future Value
 			valFV = FinCalcs.FV_Compound(PV, growthRate, 1);

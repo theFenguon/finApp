@@ -12,7 +12,7 @@ public class Company {
 	Sector s 	= Sector.CONSUMER_DISCRETIONARY;
 	Industry i 	= Industry.AUTO_COMPONENTS;
 	
-	public Company (String name, double cashFlow, int recentQuater){
+	public Company (String name){
 	   
 	}
 	public static boolean paysDividends 		= true;
@@ -23,7 +23,6 @@ public class Company {
 	public static double marketCapitalization 	= 345083;			// [$MM]
 	public static double beta					= 0.530;			// [unitless]
 	public static double terminalGrowthRate		= 2.000/100;		// [%]
-	
 	public static double WACC 					= FinCalcs.WACC();	// [%]
 	
 	
