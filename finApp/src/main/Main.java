@@ -1,6 +1,5 @@
 package main;
 
-import enums.Market_Cap;
 import testBench.TestBench;
 import finToolbox.Categories;
 
@@ -16,6 +15,5 @@ public class Main {
 		// Instantiates a test bench to test material out
 		TestBench t = new TestBench();
 		t.runTest();
-		System.out.println(Categories.setMarketCapCategory(250.00));
 	} // method main
 } // class Main

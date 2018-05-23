@@ -9,7 +9,10 @@ public class Debug {
 	public static boolean FinCalcs_GGM 				= false;
 	public static boolean FinCalcs_Graham_Number	= false;
 	public static boolean FinCalcs_CAGR				= false;
-	public static boolean FinCalcs_GeoMean			= true;
+	public static boolean FinCalcs_GeoMean			= false;
+	public static boolean FinCalcs_CAPM				= false;
+	public static boolean FinCalcs_UnleveredBeta	= true;
+	
 	//FinModel Class
 	public static boolean FinModel_DCF_Calc 			= false;
 	public static boolean FinModel_DCF_Final			= false;

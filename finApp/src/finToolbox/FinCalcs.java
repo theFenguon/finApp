@@ -141,10 +141,10 @@ public class FinCalcs {
 				
 		// Equity Assumptions -------------------------------------------------
 			// Beta
-			double beta = Company.beta;
+			double beta 				= Company.beta;
 			
 			// Cost of Equity
-			double costOfEquity = riskFreeRate + riskPremium*beta;
+			double costOfEquity 		= riskFreeRate + riskPremium*beta;
 			
 			// Market Value of Equity
 			double marketCap			= Company.marketCapitalization;
@@ -176,6 +176,70 @@ public class FinCalcs {
 	} // method WACC
 	
 	
+	// Weighted Average Cost of Capital (WACC) --------------------------------
+	// Calculates Weighted Average Cost of Capital (WACC) using CAPM 
+	// (Capital Asset Pricing Model), which uses uses a company's beta (a
+	// measure of volatility in the market) as a proxy for risk
+	//
+	// INPUTS
+	// 			none
+	//
+	// USES
+	//			CAPM()
+	//
+	// OUTPUTS
+	//			WACC = Weighted Average Cost of Capital
+	public static double WACC_CAPM() {		
+		// Market Assumptions -------------------------------------------------
+			// Risk-Free Rate
+			double riskFreeRate 		= Environment.ten_yr_t_note;
+			
+			// Required Market Rate
+			double reqMarketRate 		= User.required_market_rate;
+			
+			// Market Risk Premium
+			double riskPremium			= reqMarketRate - riskFreeRate;
+				
+		// Equity Assumptions -------------------------------------------------
+			// Beta
+			double beta 				= Company.beta;
+			
+			// Cost of Equity
+			double costOfEquity 		= riskFreeRate + riskPremium*beta;
+			
+			// Market Value of Equity
+			double marketCap			= Company.marketCapitalization;
+			
+		// Debt Assumptions ---------------------------------------------------
+			// Pre-Tax Cost of Debt
+			double preTaxCostOfDebt 	= Company.longTermBondYield;
+			
+			// Marginal Tax Rate
+			double taxRate				= Environment.marginal_tax_rate;
+			
+			// After Tax Cost of Debt
+			double afterTaxCostOfDebt 	= (1-taxRate)*preTaxCostOfDebt;
+			
+			// Estimated Market Value of Debt
+			double debtMV 				= Company.debtOutstanding;
+		
+		// Firm Assumptions ---------------------------------------------------
+			// Firm Value
+			double firmValue 			= marketCap + debtMV;
+			
+			// Debt to Firm Value
+			double debtToFirmValue 		= debtMV/firmValue;
+		
+		// Calculate WACC -----------------------------------------------------
+			double capm = CAPM(riskFreeRate,reqMarketRate,beta);
+			
+			double WACC = (1-debtToFirmValue)*costOfEquity + afterTaxCostOfDebt*debtToFirmValue;
+					
+		return WACC;
+	} // method WACC
+	
+	
+	
 	
 	
 	// Compound Average Growth Rate (CAGR) ------------------------------------
@@ -201,6 +265,31 @@ public class FinCalcs {
 		return CAGR;
 	}
 	
+	
+	
+	
+	
+	// Capital Asset Pricing Model (CAPM) -------------------------------------
+	// 
+	// INPUTS
+	// 			r_f = Risk-free Rate
+	//			r_m = Expected Market Return
+	//			beta = Beta of the Security
+	//
+	// OUTPUTS
+	//			CAPM = Capital Asset Pricing Model
+	//
+	// REFERENCES
+	//			https://www.investopedia.com/terms/c/capm.asp
+	//
+	public static double CAPM(double r_f, double r_m, double beta) {	
+			
+		double CAPM = r_f + beta*(r_m - r_f);
+		
+		if (Debug.FinCalcs_CAPM) {Util.print("CAPM~ Capital Asset Pricing Model: " + CAPM);}
+		
+		return CAPM;
+	}
 	
 	
 	
@@ -232,6 +321,55 @@ public class FinCalcs {
 		return GeoMean;
 	}
 	
+	
+	
+	
+	// Unlevered Beta ---------------------------------------------------------
+	// Calculates Unlevered Beta
+	// INPUTS
+	// 			arr = Input array
+	//
+	// OUTPUTS
+	//			unleveredBeta = Unlevered Beta
+	//
+	// REFERENCES
+	//			https://www.investopedia.com/terms/u/unleveredbeta.asp
+	//
+	public static double UnleveredBeta(double beta, double tax_rate, double debt, double equity) {	
+		
+		double unleveredBeta = beta/(1+(1-tax_rate)*(debt/equity));
+		
+		if (Debug.FinCalcs_UnleveredBeta) {Util.print("Unlevered Beta~ Unlevered Beta: " + unleveredBeta);}
+		
+		return unleveredBeta;
+	}
+	
+	
+	
+	
+	// Unlevered Beta (Overloaded) --------------------------------------------
+	// Calculates Unlevered Beta
+	// INPUTS
+	// 			arr = Input array
+	//
+	// OUTPUTS
+	//			unleveredBeta = Unlevered Beta
+	//
+	// REFERENCES
+	//			https://www.investopedia.com/terms/u/unleveredbeta.asp
+	//
+	public static double UnleveredBeta(double beta, double tax_rate, double debtToEquity) {	
+		
+		double unleveredBeta = beta/(1+(1-tax_rate)*(debtToEquity));
+		
+		if (Debug.FinCalcs_UnleveredBeta) {Util.print("Unlevered Beta~ Unlevered Beta: " + unleveredBeta);}
+		
+		return unleveredBeta;
+	}
+	
+	
+	//TODO: Cost of Equity https://www.investopedia.com/terms/c/costofequity.asp
+	//TODO: Cost of Debt https://www.investopedia.com/terms/c/costofdebt.asp
 	
 	
 	

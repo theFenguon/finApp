@@ -23,7 +23,6 @@ public class Categories {
 		else {
 			market_cap_category = "MEGA_CAP";
 		}
-	
 		
 		return market_cap_category;
 	}

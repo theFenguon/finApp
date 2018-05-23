@@ -7,6 +7,7 @@ import user.User;
 import utility.*;
 
 // TODO: Add flag that checks if discount rate < growth rate. This breaks GGM.
+// TODO: Instead of marginal tax rate, add together federal and state tax rate https://www.investopedia.com/terms/c/costofdebt.asp
 
 public class FinModel {
 
