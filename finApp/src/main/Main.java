@@ -2,11 +2,7 @@ package main;
 
 import testBench.TestBench;
 import utility.Util;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import finToolbox.Categories;
+import entity.Company;
 import interfaces.CSV;
 
 // TODO: Run sensitivity analysis to see how closely the percentages can be estimated given the financials
@@ -20,12 +16,13 @@ public class Main {
 		
 		// Instantiates a test bench to test material out
 		//TestBench t = new TestBench();
-		//t.runTest();
+		//t.runTest();		
 		
+		//String[][] data = CSV.importCSV2Arr("JNJ");
+		//Util.print(data[0][0]);
 		
-		String[][] data = CSV.importCSV2Arr("JNJ");
-		Util.print(data[0][0]);
-
+		Company c = new Company("JNJ");
+		
 		
 	} // method main
 } // class Main

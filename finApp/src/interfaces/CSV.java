@@ -7,7 +7,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import config.Config;
-import utility.Util;
 
 public class CSV {
 	
@@ -78,8 +77,10 @@ public class CSV {
 	// OUTPUTS
 	//			arr = multidimensional output array
 	public static String[][] list2Arr (List<List<String>> list) {
+		
 		String[][] arr = new String[list.size()][];
 		String[] blankArray = new String[0];
+		
 		for(int i = 0; i < list.size(); i++) {
 			arr[i] = list.get(i).toArray(blankArray);
 		}
