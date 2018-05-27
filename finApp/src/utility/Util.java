@@ -18,9 +18,4 @@ public class Util {
 	public static void print(float arg) {
 		System.out.println(arg);
 	}
-	
-	public static double getData(String param, Boolean flag) { // flag to determine pulling from server 
-		String path = Config.path;
-		return  0;
-	}
 }

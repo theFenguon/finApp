@@ -1,6 +1,6 @@
 package config;
 
 public class Config {
-	public static String path = "";
+	public static String CSVpath = "C:\\Users\\Mike Ferguson\\Desktop\\";
 	
 }
