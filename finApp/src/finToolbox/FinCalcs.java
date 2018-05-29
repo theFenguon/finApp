@@ -128,7 +128,7 @@ public class FinCalcs {
 	//
 	// OUTPUTS
 	//			WACC = Weighted Average Cost of Capital
-	public static double WACC() {		
+	public static double WACC(Company c) {		
 		// Market Assumptions -------------------------------------------------
 			// Risk-Free Rate
 			double riskFreeRate 		= Environment.ten_yr_t_note;
@@ -141,17 +141,17 @@ public class FinCalcs {
 				
 		// Equity Assumptions -------------------------------------------------
 			// Beta
-			double beta 				= Company.beta;
+			double beta 				= c.beta;
 			
 			// Cost of Equity
 			double costOfEquity 		= riskFreeRate + riskPremium*beta;
 			
 			// Market Value of Equity
-			double marketCap			= Company.marketCapitalization;
+			double marketCap			= c.marketCapitalization;
 			
 		// Debt Assumptions ---------------------------------------------------
 			// Pre-Tax Cost of Debt
-			double preTaxCostOfDebt 	= Company.longTermBondYield;
+			double preTaxCostOfDebt 	= c.longTermBondYield;
 			
 			// Marginal Tax Rate
 			double taxRate				= Environment.marginal_tax_rate;
@@ -160,7 +160,7 @@ public class FinCalcs {
 			double afterTaxCostOfDebt 	= (1-taxRate)*preTaxCostOfDebt;
 			
 			// Estimated Market Value of Debt
-			double debtMV 				= Company.debtOutstanding;
+			double debtMV 				= c.debtOutstanding;
 		
 		// Firm Assumptions ---------------------------------------------------
 			// Firm Value
@@ -189,7 +189,7 @@ public class FinCalcs {
 	//
 	// OUTPUTS
 	//			WACC = Weighted Average Cost of Capital
-	public static double WACC_CAPM() {		
+	public static double WACC_CAPM(Company c) {		
 		// Market Assumptions -------------------------------------------------
 			// Risk-Free Rate
 			double riskFreeRate 		= Environment.ten_yr_t_note;
@@ -202,17 +202,17 @@ public class FinCalcs {
 				
 		// Equity Assumptions -------------------------------------------------
 			// Beta
-			double beta 				= Company.beta;
+			double beta 				= c.beta;
 			
 			// Cost of Equity
 			double costOfEquity 		= riskFreeRate + riskPremium*beta;
 			
 			// Market Value of Equity
-			double marketCap			= Company.marketCapitalization;
+			double marketCap			= c.marketCapitalization;
 			
 		// Debt Assumptions ---------------------------------------------------
 			// Pre-Tax Cost of Debt
-			double preTaxCostOfDebt 	= Company.longTermBondYield;
+			double preTaxCostOfDebt 	= c.longTermBondYield;
 			
 			// Marginal Tax Rate
 			double taxRate				= Environment.marginal_tax_rate;
@@ -221,7 +221,7 @@ public class FinCalcs {
 			double afterTaxCostOfDebt 	= (1-taxRate)*preTaxCostOfDebt;
 			
 			// Estimated Market Value of Debt
-			double debtMV 				= Company.debtOutstanding;
+			double debtMV 				= c.debtOutstanding;
 		
 		// Firm Assumptions ---------------------------------------------------
 			// Firm Value

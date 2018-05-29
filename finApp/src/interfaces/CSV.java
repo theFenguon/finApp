@@ -25,7 +25,7 @@ public class CSV {
 		
 		// Import CSV data as a nested list (list of lists)
 		data = CSV.CSVParser(ticker);
-		
+				
 		// Transfer nested list to array
 		String[][] arr = CSV.list2Arr(data);
 						
@@ -86,7 +86,7 @@ public class CSV {
 		}
 		
 		return arr;
-	}
+	} // list2Arr
 	
 	
 	

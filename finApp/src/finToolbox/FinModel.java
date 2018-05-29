@@ -19,7 +19,7 @@ public class FinModel {
 	// OUTPUTS
 	//			none
 	// TODO: expand method to accept an array of growth rates and pass in environment and company object
-	public static void DCF(double initPV, double growthRate, double period) {
+	public static void DCF(double initPV, double growthRate, Company c, double period) {
 		
 		double valFV 	= 0;
 		double valPV 	= 0;
@@ -27,10 +27,11 @@ public class FinModel {
 		double PV 		= initPV;
 
 		//TODO: expand DCF method to accept object containing these variables
-		double k 		= Company.WACC;					// [%] Discount Rate (WACC) (from Company object)
-		double g_t 		= Company.terminalGrowthRate; 	// [%] Terminal Growth Rate (from Company object [usually 10-yr T-Note yield])
-		double debt 	= Company.debtOutstanding; 		// [$MM] Outstanding Debt (from Company object)
-		double shares	= Company.sharesOutstanding;		// [MM] Shares Outstanding (from Company object)
+		//TODO: Fix WACC call
+		double k 		= 0.1;					// [%] Discount Rate (WACC) (from Company object)
+		double g_t 		= c.terminalGrowthRate; 	// [%] Terminal Growth Rate (from Company object [usually 10-yr T-Note yield])
+		double debt 	= c.debtOutstanding; 		// [$MM] Outstanding Debt (from Company object)
+		double shares	= c.sharesOutstanding;		// [MM] Shares Outstanding (from Company object)
 		
 		if (Debug.FinModel_DCF_Calc) { Util.print("Starting Value: " + initPV + "\n");}
 		
@@ -85,7 +86,7 @@ public class FinModel {
 		// OUTPUTS
 		//			none
 		// TODO: expand method to accept an array of growth rates and pass in environment and company object
-		public static void DCF(double initPV, double[] growthRate, double period) {
+		public static void DCF(double initPV, double[] growthRate, Company c, double period) {
 			
 			//TODO: add try/catch: period >= length of growthRate array. If not, throw exception and exit method
 			//if (period <= growthRate.length) {boolean err = true;}
@@ -97,10 +98,11 @@ public class FinModel {
 			double PV 		= initPV;
 
 			//TODO: expand DCF method to accept object containing these variables
-			double k 		= Company.WACC;					// [%] Discount Rate (WACC) (from Company object)
-			double g_t 		= Company.terminalGrowthRate;		// [%] Terminal Growth Rate (from environment object [usually 10-yr T-Note yield])
-			double debt 	= Company.debtOutstanding;		// [$MM] Outstanding Debt (from Company object)
-			double shares	= Company.sharesOutstanding;		// [MM] Shares Outstanding (from Company object)
+			//TODO: Fix WACC call
+			double k 		= 0.1;					// [%] Discount Rate (WACC) (from Company object)
+			double g_t 		= c.terminalGrowthRate;		// [%] Terminal Growth Rate (from environment object [usually 10-yr T-Note yield])
+			double debt 	= c.debtOutstanding;		// [$MM] Outstanding Debt (from Company object)
+			double shares	= c.sharesOutstanding;		// [MM] Shares Outstanding (from Company object)
 			
 			if (Debug.FinModel_DCF_Calc) { Util.print("Starting Value: " + initPV + "\n");}
 			

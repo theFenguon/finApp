@@ -1,5 +1,6 @@
 package testBench;
 
+import entity.Company;
 import finToolbox.FinCalcs;
 import finToolbox.FinModel;
 import finToolbox.M;
@@ -7,13 +8,13 @@ import utility.Util;
 
 public class TestBench {
 	
-	public void runTest() {
+	public void runTest(Company c) {
 	// DCF ----------------------------------------------------------------
 		// Discounted Cash Flow with Stable Growth
 		double initPV 			= 15541;		// [$MM] Initial Present Value (from Financials)
 		double FCFGrowthRate 	= 2.150/100;	// [%] Assumed constant growth rate (from Financials)
 		int nPeriods 			= 10;			// Number of periods to evaluate (user defined)	
-		FinModel.DCF(initPV, FCFGrowthRate, nPeriods);
+		FinModel.DCF(initPV, FCFGrowthRate, c, nPeriods);
 		
 		// Discounted Cash Flow with Variable Growth
 		double[] FCFGrowthRateArr = {
@@ -27,7 +28,7 @@ public class TestBench {
 				2.150/100, 
 				2.150/100, 
 				2.150/100};
-		FinModel.DCF(initPV, FCFGrowthRateArr, nPeriods);
+		FinModel.DCF(initPV, FCFGrowthRateArr, c, nPeriods);
 		
 		
 		// DDM ----------------------------------------------------------------
