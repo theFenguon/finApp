@@ -45,6 +45,8 @@ public class Company {
 	public int DDM_rate_ind;
 	
 	// Values
+	public String sector;
+	public String industry;
 	public double currentMarketPrice;
 	public double marketCapitalization;
 	public double beta;
@@ -77,8 +79,8 @@ public class Company {
 		//Index data array and store local variables
 		indexData(data);
 		
-		Util.print(data[FCF_ind].length);
-		Util.print(data[FCF_ind][1]);
+		//Util.print(data[FCF_ind].length);
+		//Util.print(data[FCF_ind][1]);
 		
 		//double valuation = valueCompany(data);
 	}
@@ -99,92 +101,72 @@ public class Company {
 			
 				// Sector
 				case "Sector":
-					sector_ind = i;
+					sector = data[i][1];
 				break;
 				
 				// Industry
 				case "Industry":
-					industry_ind = i;
+					industry = data[i][1];
 				break;
 				
 				// Current Market Price
 				case "Current_Market_Price":
-					// Assign index value
-					price_ind = i;
 					// Store Current Market Price
-					currentMarketPrice = Double.parseDouble(data[price_ind][1]);
+					currentMarketPrice = Double.parseDouble(data[i][1]);
 				break;
 				
 				// Market Capitalization
 				case "Market_Cap":
-					// Assign index value
-					market_cap_ind = i;
 					// Store Market Cap
-					marketCapitalization = Double.parseDouble(data[market_cap_ind][1]);
+					marketCapitalization = Double.parseDouble(data[i][1]);
 				break;
 				
 				// Beta
 				case "Beta":
-					// Assign index value
-					beta_ind = i;
 					// Store Beta
-					beta = Double.parseDouble(data[beta_ind][1]);
+					beta = Double.parseDouble(data[i][1]);
 				break;
 				
 				// Shares Outstanding
 				case "Shares_Outstanding":
-					// Assign index value
-					shares_out_ind = i;
 					// Store Shares Outstanding
-					sharesOutstanding = Double.parseDouble(data[shares_out_ind][1]);
+					sharesOutstanding = Double.parseDouble(data[i][1]);
 				break;
 				
 				// Outstanding Debt
 				case "Outstanding_Debt":
-					// Assign index value
-					debt_out_ind = i;
 					// Store Debt Outstanding
-					debtOutstanding = Double.parseDouble(data[debt_out_ind][1]);
+					debtOutstanding = Double.parseDouble(data[i][1]);
 				break;
 				
 				// Long Term Bond Yield
 				case "Long_Term_Bond_Yields":
-					// Assign index value
-					bond_yield_ind = i;
 					// Store Long Term Bond Yield
-					longTermBondYield = Double.parseDouble(data[bond_yield_ind][1]);
+					longTermBondYield = Double.parseDouble(data[i][1]);
 				break;
 				
 				// Trailing Twelve Months Earnings per Share
 				case "EPS_TTM":
-					// Assign index value
-					EPS_TTM_ind = i;
 					// Store Long Term Bond Yield
-					EPS_TTM = Double.parseDouble(data[EPS_TTM_ind][1]);
+					EPS_TTM = Double.parseDouble(data[i][1]);
 				break;
 				
 				// Trailing Twelve Months Book Value
 				case "BV_TTM":
-					// Assign index value
-					BV_TTM_ind = i;
 					// Store Long Term Bond Yield
-					BV_TTM = Double.parseDouble(data[BV_TTM_ind][1]);
+					BV_TTM = Double.parseDouble(data[i][1]);
 				break;
 				
 				// Most Recent Quarter Current Value
 				case "Current_Ratio_MRQ":
-					// Assign index value
-					CR_MRQ_ind = i;
 					// Store Long Term Bond Yield
-					CR_MRQ = Double.parseDouble(data[CR_MRQ_ind][1]);
+					CR_MRQ = Double.parseDouble(data[i][1]);
 				break;
 				
 				// Most Recent Quarter Debt to Equity Ratio
 				case "Debt_to_Equity_MRQ":
-					// Assign index value
-					DE_MRQ_ind = i;
 					// Store Long Term Bond Yield
-					DE_MRQ = Double.parseDouble(data[DE_MRQ_ind][1]);
+					DE_MRQ = Double.parseDouble(data[i][1]);
 				break;
 				
 				// Years
@@ -193,7 +175,7 @@ public class Company {
 					// Generate array with double values. Convert strings to doubles
 					years = new double[data[i].length];
 					for (int j = 1; j < data[i].length; j++) {
-						Util.print(data[i][j]);
+						//Util.print(data[i][j]);
 						years[j] = Double.parseDouble(data[i][j]);
 					}
 					
@@ -205,7 +187,7 @@ public class Company {
 					// Generate array with double values. Convert strings to doubles
 					netIncome = new double[data[i].length];
 					for (int j = 1; j < data[i].length; j++) {
-						Util.print(data[i][j]);
+						//Util.print(data[i][j]);
 						netIncome[j] = Double.parseDouble(data[i][j]);
 					}
 					
@@ -217,7 +199,7 @@ public class Company {
 					// Generate array with double values. Convert strings to doubles
 					EPS = new double[data[i].length];
 					for (int j = 1; j < data[i].length; j++) {
-						Util.print(data[i][j]);
+						//Util.print(data[i][j]);
 						EPS[j] = Double.parseDouble(data[i][j]);
 					}
 					
@@ -229,7 +211,7 @@ public class Company {
 					// Generate array with double values. Convert strings to doubles
 					dividends = new double[data[i].length];
 					for (int j = 1; j < data[i].length; j++) {
-						Util.print(data[i][j]);
+						//Util.print(data[i][j]);
 						dividends[j] = Double.parseDouble(data[i][j]);
 					}
 					
@@ -241,7 +223,7 @@ public class Company {
 					// Generate array with double values. Convert strings to doubles
 					shares = new double[data[i].length];
 					for (int j = 1; j < data[i].length; j++) {
-						Util.print(data[i][j]);
+						//Util.print(data[i][j]);
 						shares[j] = Double.parseDouble(data[i][j]);
 					}
 					
@@ -253,7 +235,7 @@ public class Company {
 					// Generate array with double values. Convert strings to doubles
 					bookValue = new double[data[i].length];
 					for (int j = 1; j < data[i].length; j++) {
-						Util.print(data[i][j]);
+						//Util.print(data[i][j]);
 						bookValue[j] = Double.parseDouble(data[i][j]);
 					}
 					
@@ -265,7 +247,7 @@ public class Company {
 					// Generate array with double values. Convert strings to doubles
 					freeCashFlow = new double[data[i].length];
 					for (int j = 1; j < data[i].length; j++) {
-						Util.print(data[i][j]);
+						//Util.print(data[i][j]);
 						freeCashFlow[j] = Double.parseDouble(data[i][j]);
 					}
 					
@@ -278,7 +260,7 @@ public class Company {
 					if(data[i].length > 2) {
 						DCF_rate = new double[data[i].length];
 						for (int j = 1; j < data[i].length; j++) {
-							Util.print(data[i][j]);
+							//Util.print(data[i][j]);
 							DCF_rate[j] = Double.parseDouble(data[i][j]);
 						}
 					} //if
@@ -297,7 +279,7 @@ public class Company {
 					if(data[i].length > 2) {
 						DDM_rate = new double[data[i].length];
 						for (int j = 1; j < data[i].length; j++) {
-							Util.print(data[i][j]);
+							//Util.print(data[i][j]);
 							DDM_rate[j] = Double.parseDouble(data[i][j]);
 						}
 					} //if

@@ -22,7 +22,7 @@ public class Main {
 		//Util.print(data[0][0]);
 		
 		Company c = new Company("JNJ");
-		Util.print(c.years[1]);
+		//Util.print(c.years[1]);
 		
 		
 		// TODO: cycle through companies and get their valuation vs. market price
