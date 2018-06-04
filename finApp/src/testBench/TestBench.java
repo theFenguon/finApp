@@ -63,16 +63,6 @@ public class TestBench {
 		double BV 	= 27.54;
 		FinModel.Graham(EPS, BV);
 		
-		double[] arr = {1, 2, 3, 4, 5};
-		double q = M.moving_average(arr,3);
-		//Util.print("Moving Average: " + q);
-		
-		double[] arr2 = {1, 2, 3, 4};
-		double foo = FinCalcs.GeometricMean(arr2);
-		
-		FinCalcs.CAPM(0.02, 0.1, 2);
-		
-		FinCalcs.UnleveredBeta(0.73, 0.35, 2.2, 1);
 		
 	}
 }

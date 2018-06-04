@@ -77,7 +77,7 @@ public class Company {
 		data = CSV.importCSV2Arr(ticker);
 		
 		//Index data array and store local variables
-		indexData(data);
+		storeData(data);
 		
 		//Util.print(data[FCF_ind].length);
 		//Util.print(data[FCF_ind][1]);
@@ -91,7 +91,7 @@ public class Company {
 		return val;
 	}
 	
-	private void indexData (String[][] data) {
+	private void storeData (String[][] data) {
 		
 		for(int i = 0; i < data.length; i++) {
 			

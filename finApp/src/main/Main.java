@@ -15,13 +15,10 @@ public class Main {
 	public static void main (String[] args) {		
 		
 		// Instantiates a test bench to test material out
-		//TestBench t = new TestBench();
+		TestBench t = new TestBench();
 		//t.runTest();		
 		
-		//String[][] data = CSV.importCSV2Arr("JNJ");
-		//Util.print(data[0][0]);
-		
-		Company c = new Company("JNJ");
+		//Company c = new Company("JNJ");
 		//Util.print(c.years[1]);
 		
 		
