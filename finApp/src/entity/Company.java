@@ -20,6 +20,7 @@ public class Company {
 	
 	public double terminalGrowthRate		= 2.000/100;		// [%]
 	//public static double WACC 					= FinCalcs.WACC();	// [%]
+	public double WACC = 0.0585;
 	
 	// Indices
 	public int sector_ind;
@@ -258,10 +259,10 @@ public class Company {
 				
 					// Generate array with double values. Convert strings to doubles
 					if(data[i].length > 2) {
-						DCF_rate = new double[data[i].length];
+						DCF_rate = new double[data[i].length-1];
 						for (int j = 1; j < data[i].length; j++) {
 							//Util.print(data[i][j]);
-							DCF_rate[j] = Double.parseDouble(data[i][j]);
+							DCF_rate[j-1] = Double.parseDouble(data[i][j]);
 						}
 					} //if
 					else {
@@ -277,10 +278,10 @@ public class Company {
 					
 					// Generate array with double values. Convert strings to doubles
 					if(data[i].length > 2) {
-						DDM_rate = new double[data[i].length];
+						DDM_rate = new double[data[i].length-1];
 						for (int j = 1; j < data[i].length; j++) {
 							//Util.print(data[i][j]);
-							DDM_rate[j] = Double.parseDouble(data[i][j]);
+							DDM_rate[j-1] = Double.parseDouble(data[i][j]);
 						}
 					} //if
 					else {

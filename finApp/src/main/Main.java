@@ -16,9 +16,13 @@ public class Main {
 		
 		// Instantiates a test bench to test material out
 		TestBench t = new TestBench();
-		//t.runTest();		
+		Company c = new Company("JNJ");
+		t.testCompany(c);
+		Util.print("\n");
+		Company n = new Company("NKE");
+		t.testCompany(n);
+		//t.runTest(c);		
 		
-		//Company c = new Company("JNJ");
 		//Util.print(c.years[1]);
 		
 		
