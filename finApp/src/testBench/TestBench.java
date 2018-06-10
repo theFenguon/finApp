@@ -7,7 +7,7 @@ import finToolbox.M;
 import utility.Util;
 
 public class TestBench {
-	
+		
 	public void testCompany(Company c) {
 		
 		// DCF

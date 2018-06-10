@@ -19,7 +19,7 @@ public class Company {
 	public static boolean paysDividends 		= true;
 	
 	public double terminalGrowthRate		= 2.000/100;		// [%]
-	//public static double WACC 					= FinCalcs.WACC();	// [%]
+	//public double WACC 					= FinCalcs.WACC();	// [%]
 	public double WACC = 0.0585;
 	
 	// Indices
@@ -75,7 +75,7 @@ public class Company {
 		
 	public Company (String ticker){
 	   
-		data = CSV.importCSV2Arr(ticker);
+		data = CSV.importCSV2Arr("financials", ticker);
 		
 		//Index data array and store local variables
 		storeData(data);

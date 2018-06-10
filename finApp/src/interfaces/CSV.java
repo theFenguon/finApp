@@ -7,8 +7,53 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import config.Config;
+import utility.Util;
 
 public class CSV {
+		
+	// importCSV2Arr ----------------------------------------------------------
+	// Calls (2) methods: 
+	// (1) Imports CSV to nested list
+	// (2) Converts nested list to multidimensional array
+	//
+	// INPUTS
+	// 			ticker = ticker symbol
+	// OUTPUTS
+	//			arr = multidimensional output array
+	public static String[][] importCSV2Arr (String category, String ticker){
+		
+		List<List<String>> data = new ArrayList<>();
+		
+		String filePath = null;
+		
+			// Construct filepath
+			switch(category) {
+			
+				// Company Financials
+				case "financials":
+					filePath = Config.CSVpath + ticker + "_Financials.csv";
+				break;
+				
+				// Ticker Symbols and CIK
+				case "TickerCIK":
+					filePath = Config.CSVpath + "TickerCIK.csv";
+				break;
+				
+			} //switch
+			
+		// Import CSV data as a nested list (list of lists)
+		try {
+			data = CSV.CSVParser(filePath);
+		} catch (Exception e) {
+			System.out.println(e.getClass());
+		}
+				
+		// Transfer nested list to array
+		String[][] arr = CSV.list2Arr(data);
+						
+		return arr;
+		
+	}
 	
 	// importCSV2Arr ----------------------------------------------------------
 	// Calls (2) methods: 
@@ -19,12 +64,26 @@ public class CSV {
 	// 			ticker = ticker symbol
 	// OUTPUTS
 	//			arr = multidimensional output array
-	public static String[][] importCSV2Arr (String ticker){
+	public static String[][] importCSV2Arr (String category){
 		
 		List<List<String>> data = new ArrayList<>();
 		
+		String filePath = null;
+		
+		
+		// Construct filepath
+		switch(category) {
+			
+			// Ticker Symbols and CIK
+			case "TickerCIK":
+				filePath = Config.CSVpath + "TickerCIK.csv";
+			break;
+			
+		} //switch
+		
+		
 		// Import CSV data as a nested list (list of lists)
-		data = CSV.CSVParser(ticker);
+		data = CSV.CSVParser(filePath);
 				
 		// Transfer nested list to array
 		String[][] arr = CSV.list2Arr(data);
@@ -39,9 +98,14 @@ public class CSV {
 	// 			String ticker = ticker symbol used to generate file name
 	// OUTPUTS
 	//			data = nested list of data
-	public static List<List<String>> CSVParser (String ticker) {
-		String fileName = Config.CSVpath + ticker + "_Financials.csv";
-	    File file= new File(fileName);
+	public static List<List<String>> CSVParser (String filePath) {
+		File file = null;
+		
+		try {
+	    file= new File(filePath);
+		} catch (Exception e) {
+			System.out.println(e.getClass());
+		}
 	
 	    // this gives you a 2-dimensional array of strings
 	    List<List<String>> data = new ArrayList<>();
@@ -58,8 +122,11 @@ public class CSV {
 	        }
 	
 	        inputStream.close();
+	        
 	    }catch (FileNotFoundException e) {
-	        e.printStackTrace();
+	        //e.printStackTrace();
+	    	//System.out.println(e.getClass());
+	    	Util.print("Not Found");
 	    }
 	       
 	    return data;

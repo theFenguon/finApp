@@ -14,17 +14,31 @@ public class Main {
 	public static String test;
 	public static void main (String[] args) {		
 		
-		// Instantiates a test bench to test material out
+		String[] roster = new String[2];
+		roster[0] = "JNJ";
+		roster[1] = "NKE";
+		
+		Company c;
 		TestBench t = new TestBench();
-		Company c = new Company("JNJ");
-		t.testCompany(c);
-		Util.print("\n");
-		Company n = new Company("NKE");
-		t.testCompany(n);
-		//t.runTest(c);		
 		
-		//Util.print(c.years[1]);
+		for (int i = 0; i<roster.length; i++) {
+			Util.print(roster[i]);
+			c = new Company(roster[i]);
+			t.testCompany(c);
+			Util.print("\n");
+		}
 		
+		
+		/*
+		String[][] tickerList = CSV.importCSV2Arr("TickerCIK");
+		
+		for (int i = 0; i<tickerList.length; i++) {
+			Util.print(tickerList[i][0]);
+			c = new Company(tickerList[i][0]);
+			t.testCompany(c);
+			Util.print("\n");
+		}
+		*/
 		
 		// TODO: cycle through companies and get their valuation vs. market price
 		// TODO: track industries and sectors in a market-wide calculations

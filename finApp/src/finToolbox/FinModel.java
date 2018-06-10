@@ -153,7 +153,7 @@ public class FinModel {
 			if(Debug.FinModel_DCF_Calc) {Util.print(nPeriods + " year DCF Intrinsic Value: " + DCF_value);}
 			
 			double DCF_price = DCF_value/shares;
-			if(Debug.FinModel_DCF_Final) {Util.print("DCF Multi~ " + nPeriods + " year DCF Share Price: " + DCF_price);}
+			if(Debug.FinModel_DCF_Final) {Util.print("DCF~ " + nPeriods + " year DCF Share Price: " + DCF_price);}
 			
 		} // method DCF
 	
